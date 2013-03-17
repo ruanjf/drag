@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>drag</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script src="js/jquery.gridster.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.gridster.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+</head>
+<body>
+    <div>
+        <ul class="breadcrumb">
+            <li><a href="#">Home</a> <span class="divider">/</span></li>
+            <li><a href="#">Library</a> <span class="divider">/</span></li>
+            <li class="active">Data</li>
+        </ul>
+    </div>
+    <div class="demo">
+        <div class="gridster">
+            <div>
+                <div data-row="1" data-col="1" data-sizex="10" data-sizey="10">Block1</div>
+                <div data-row="11" data-col="1" data-sizex="10" data-sizey="10">Block2</div>
+                <div data-row="21" data-col="1" data-sizex="10" data-sizey="10">Block3</div>
+
+                <div data-row="1" data-col="11" data-sizex="20" data-sizey="10">Block4</div>
+                <div data-row="11" data-col="11" data-sizex="20" data-sizey="20">Block5</div>
+                <!-- <div class="gridster1" data-row="2" data-col="2" data-sizex="2" data-sizey="2"> -->
+                <!-- <div data-row="2" data-col="2" data-sizex="2" data-sizey="2">
+                    <div>
+                        <div data-row="1" data-col="1" data-sizex="1" data-sizey="1">Block51</div>
+                        <div data-row="1" data-col="1" data-sizex="1" data-sizey="1">Block52</div>
+                    </div>
+                </div> -->
+
+                <div data-row="1" data-col="31" data-sizex="10" data-sizey="10">Block6</div>
+                <div data-row="11" data-col="31" data-sizex="20" data-sizey="10">Block7</div>
+                <div data-row="21" data-col="31" data-sizex="10" data-sizey="10">Block8</div>
+
+                <div data-row="1" data-col="41" data-sizex="10" data-sizey="10">Block9</div>
+                <div data-row="21" data-col="41" data-sizex="10" data-sizey="10">Block10</div>
+
+                <div data-row="1" data-col="51" data-sizex="10" data-sizey="10">Block11</div>
+                <div data-row="11" data-col="51" data-sizex="10" data-sizey="20">Block12</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  var gridster;
+
+  $(function(){
+
+    gridster = $(".gridster > div").gridster({
+        draggable: {
+            start: function(event, ui){}
+        },
+        collision: {
+            on_overlap: function(collider_data){}
+        },
+        widget_selector: "div",
+        widget_margins: [1, 1],
+        widget_base_dimensions: [16, 16],
+        max_size_x: 320,
+        min_cols: 320
+    }).data('gridster');
+
+    // $(".gridster1 > div").gridster({
+    //     widget_margins: [10, 10],
+    //     widget_base_dimensions: [140, 140]
+    // });
+    //console.log(gridster.serialize());
+  });
+</script>
+</html>
