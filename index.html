@@ -7,9 +7,10 @@
 	<!-- <script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/easeljs-0.6.0.min.js"></script>
 	<script type="text/javascript" src="js/drag.js"></script> -->
+	<script type="text/javascript" src="js/drag.js"></script>
 	<script data-main="components/main" src="components/requirejs/require.js"></script>
 
-	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="css/bootstrap.css" rel="stylesheet" media="screen">
 	<!-- <link rel="stylesheet" type="text/css" href="css/base.css"> -->
 
 	<!-- We also provide hosted minified versions of all CreateJS libraries.
@@ -19,7 +20,8 @@
 	
 <body>
 	<div class="container-fluid">
-		<div class="tabbable"> <!-- Only required for left/right tabs -->
+		 <!-- Only required for left/right tabs -->
+		<!-- <div class="tabbable" cl>
 			<ul class="nav nav-tabs">
 				<li class="active"><a href="#tab1" data-toggle="tab">Section 1</a></li>
 				<li><a href="#tab2" data-toggle="tab">Section 2</a></li>
@@ -28,7 +30,7 @@
 				<div class="tab-pane active" id="tab1">
 					<ul class="thumbnails">
 						<li>
-							<a href="#" class="thumbnail"><img data-src="holder.js/100x100" alt=""></a>
+							<a href="#" class="thumbnail"><img data-src="holder.js/80x80" alt=""></a>
 						</li>
 					</ul>
 				</div>
@@ -36,9 +38,11 @@
 				  <p>Howdy, I'm in Section 2.</p>
 				</div>
 			</div>
+		</div> -->
+		<div id="drag">
+			<div id="panel"></div>
 		</div>
-		<div id="drag">cc</div>
-		<div>
+		<div id="breadcrumb">
 			<ul class="breadcrumb">
 			    <li><a href="#">Home</a> <span class="icon-chevron-right"></span></li>
 			    <li><a href="#">Library</a> <span class="icon-chevron-right"></span></li>
@@ -46,10 +50,10 @@
 			</ul>
 	    </div>
 	</div>
+	<!-- <script>
 	<div class="canvasHolder">
 		<canvas id="testCanvas" width="960" height="600"></canvas>
 	</div>
-	<!-- <script>
 		//new Drag( document.getElementById("testCanvas") );
 	</script> -->
 </body>
