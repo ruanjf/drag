@@ -2,12 +2,15 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+	<meta http-equiv="expires" content="0">
 	<title>Drag</title>
 
 	<!-- <script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/easeljs-0.6.0.min.js"></script>
 	<script type="text/javascript" src="js/drag.js"></script> -->
-	<script type="text/javascript" src="js/drag.js"></script>
+	<!-- // <script type="text/javascript" src="js/drag.js"></script> -->
 	<script data-main="components/main" src="components/requirejs/require.js"></script>
 
 	<link href="css/bootstrap.css" rel="stylesheet" media="screen">
@@ -39,16 +42,18 @@
 				</div>
 			</div>
 		</div> -->
-		<div id="drag">
-			<div id="panel"></div>
+		<div id="ct">
+			<div id="drag">
+				<div id="panel"></div>
+			</div>
+			<div id="breadcrumb">
+				<ul class="breadcrumb">
+				    <li><a href="#">Home</a> <span class="icon-chevron-right"></span></li>
+				    <li><a href="#">Library</a> <span class="icon-chevron-right"></span></li>
+				    <li class="active">Data</li>
+				</ul>
+		    </div>
 		</div>
-		<div id="breadcrumb">
-			<ul class="breadcrumb">
-			    <li><a href="#">Home</a> <span class="icon-chevron-right"></span></li>
-			    <li><a href="#">Library</a> <span class="icon-chevron-right"></span></li>
-			    <li class="active">Data</li>
-			</ul>
-	    </div>
 	</div>
 	<!-- <script>
 	<div class="canvasHolder">
