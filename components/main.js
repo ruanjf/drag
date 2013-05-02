@@ -64,6 +64,9 @@ require(
 		var dw = new Dg.Draw("ct", 500);
 		var a = new Dg.Node(0, 0, 300);
 		var b = new Dg.Node(20, 20, 100, 100);
+		b.renderContent = function(wrap) {
+			wrap.append("<div>bbbbbb</div>");
+		};
 		a.addChildren(b);
 		dw.addChildren(a);
 
@@ -78,15 +81,19 @@ require(
 		// console.log(_.pairs(a.getChildren()));
 		// console.log(_.pairs(dw.getTopNodes()));
 
-		var TN = Dg.extendNode(function() {
-			this.aa = function(){
-				console.log(2);
-			};
-			this.getChildren = function() {
-				return 3;
-			};
-		});
-		var n = new TN();
+		// var TN = Dg.extendNode(function() {
+		// 	this.aa = function(){
+		// 		console.log(2);
+		// 	};
+		// 	this.getChildren = function() {
+		// 		return 3;
+		// 	};
+		// 	this.renderContent = function(wrap) {
+		// 		wrap.append("<div>xxxxx</div>");
+		// 	};
+		// });
+		// var n = new TN(20, 20, 100, 100);
+		// a.addChildren(n);
 		// alert(n.getChildren());
 		// alert(Dg.isNode(n));
 		// alert(n instanceof TN);
