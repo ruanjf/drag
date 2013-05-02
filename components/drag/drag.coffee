@@ -165,10 +165,3 @@ class Dg.Draw extends Dg.Node
 		bc.css ct
 
 		@render = ->
-
-class Dg.Drawxxx extends Dg.Node
-	aa: ->
-		alert 1
-
-	bb: ->
-		alert 2
