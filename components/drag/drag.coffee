@@ -3,6 +3,9 @@ window.Dg = VERSION: "0.1"
 # tools
 Dg.isNode = (n) -> n instanceof Dg.Node
 
+
+Dg.isDraw = (n) -> n instanceof Dg.Draw
+
 Dg.listNodes = (c, fuc) ->
 	doFuc = (n) ->
 		if Dg.isNode n  then fuc n
@@ -10,6 +13,16 @@ Dg.listNodes = (c, fuc) ->
 		_.each c, doFuc
 	else
 		doFuc c
+
+Dg.findDraw = (n) ->
+	if n.parent
+		if Dg.isNode n.parent
+			Dg.findDraw n.parent
+	else
+		if Dg.isDraw n
+			n
+		else
+			null
 
 # Dg.extend = (d, s) ->
 # 	if d and s and _.isFunction d
@@ -58,7 +71,6 @@ class Dg.Node
 
 	getNodeId = (name) -> name + "_" + new Date().getTime()
 
-
 	getChildren: -> children
 
 	addChildren: (c) ->
@@ -77,6 +89,7 @@ class Dg.Node
 			self.wrap.remove n.wrap
 
 	render: ->
+		self = @
 		wrap = @wrap
 		if not @prop.height
 			if @parent
@@ -97,11 +110,15 @@ class Dg.Node
 		wrap.draggable containment: "parent"
 		wrap.mousedown () -> $(@).css "cursor", "move"
 		wrap.mouseup () -> $(@).css "cursor", ""
+		# wrap.mousemove () -> $(@).css "cursor", "move"
 
 		wrap.click ()->
-			$(@).css "border", "red solid thin" 
-			if hostKeyWidget then hostKeyWidget.css "border", ""
-			hostKeyWidget = $ @
+			d = Dg.findDraw self
+			if d
+				if d.selectedWidget and d.selectedWidget.wrap
+					d.selectedWidget.wrap.css "border", "blue dashed thin"
+				d.selectedWidget = self
+				$(@).css "border", "blue solid thin"
 			false
 
 		wrap.dblclick () ->
@@ -158,10 +175,50 @@ class Dg.Draw extends Dg.Node
 		pl.css
 			position: 'relative'
 			'height': '2000px'
+		@prop.width = Number pl.css("width").replace("px", "")
+		@prop.height = Number pl.css("height").replace("px", "")
 
 		# bc = $ '#breadcrumb'
 		bc = $ '<div id="breadcrumb"></div>'
 		root.append bc
 		bc.css ct
+		
+		
+		$(document).keydown (e) => @keypress e
 
 		@render = ->
+
+	keypress: (e) ->
+		# alert e.which + ',' + e.keyCode
+		if @selectedWidget
+			if e.which
+     			k = e.keyCode    # old IE
+			else if e.which != 0 and e.charCode != 0
+				k = e.which	  # All others
+			else
+				# special key
+			if k >= 37 and k <= 40
+				w = @selectedWidget.wrap
+				switch k
+					when 37
+						l = Number w.css("left").replace("px", "")
+						if l > 0 then w.css "left", l-1+"px"
+						# then w.css "left", Number(w.css("left").replace("px", ""))-1+"px"
+					when 38
+						t = Number w.css("top").replace("px", "")
+						if t > 0 then w.css "top", t-1+"px"
+						# then w.css "top", Number(w.css("top").replace("px", ""))-1+"px"
+					when 39
+						l = Number w.css("left").replace("px", "")
+						wd = @selectedWidget.prop.width
+						pwd = @selectedWidget.parent.prop.width
+						if pwd > wd + l + 2 then w.css "left", l+1+"px"
+					when 40
+						t = Number w.css("top").replace("px", "")
+						ht = @selectedWidget.prop.height
+						pht = @selectedWidget.parent.prop.height
+						if pht > ht + t + 2 then w.css "top", t+1+"px"
+				return false
+			#alert @selectedWidget.wrap.css 'left'
+			# String.fromCharCode(e.keyCode);
+

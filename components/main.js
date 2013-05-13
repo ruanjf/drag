@@ -1,9 +1,5 @@
-require.config({
-
-    deps: ["main"],
-
-    paths: {
-        "jquery": "jquery/jquery",
+var webPaths = {
+        "jquery": "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min",
 		"jquery.ui.core": "jquery/ui/jquery.ui.core",
 		"jquery.ui.widget": "jquery/ui/jquery.ui.widget",
 		"jquery.ui.mouse": "jquery/ui/jquery.ui.mouse",
@@ -15,7 +11,26 @@ require.config({
         "holder": "holder/holder",
         "backbone": "backbone/backbone",
         "drag": "drag/drag"
-    },
+};
+var localPaths = {
+    "jquery": "jquery/jquery",
+	"jquery.ui.core": "jquery/ui/jquery.ui.core",
+	"jquery.ui.widget": "jquery/ui/jquery.ui.widget",
+	"jquery.ui.mouse": "jquery/ui/jquery.ui.mouse",
+	"jquery.ui.draggable": "jquery/ui/jquery.ui.draggable",
+	"jquery.ui.droppable": "jquery/ui/jquery.ui.droppable",
+	"jquery.ui.resizable": "jquery/ui/jquery.ui.resizable",
+	"underscore": "underscore/underscore",
+    "bootstrap": "bootstrap/js/bootstrap",
+    "holder": "holder/holder",
+    "backbone": "backbone/backbone",
+    "drag": "drag/drag"
+};
+require.config({
+
+    deps: ["main"],
+
+    paths: localPaths,
 
     shim: {
         "jquery": {
@@ -70,7 +85,13 @@ require(
 		a.addChildren(b);
 		dw.addChildren(a);
 
-		dw.addChildren(new Dg.Node(230, 0, 200, 200));
+		var d = new Dg.Node(230, 0, 200, 200);
+		var e = new Dg.Node(20, 20, 100, 100);
+		e.renderContent = function(wrap) {
+			wrap.append("<div>eeeeeee</div>");
+		};
+		d.addChildren(e);
+		dw.addChildren(d);
 		// dw.addChildren(new Dg.Node(430, 303));
 
 		// console.log(_.pairs(a.getChildren()));

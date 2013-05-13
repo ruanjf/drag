@@ -11,6 +11,10 @@
     return n instanceof Dg.Node;
   };
 
+  Dg.isDraw = function(n) {
+    return n instanceof Dg.Draw;
+  };
+
   Dg.listNodes = function(c, fuc) {
     var doFuc;
 
@@ -23,6 +27,20 @@
       return _.each(c, doFuc);
     } else {
       return doFuc(c);
+    }
+  };
+
+  Dg.findDraw = function(n) {
+    if (n.parent) {
+      if (Dg.isNode(n.parent)) {
+        return Dg.findDraw(n.parent);
+      }
+    } else {
+      if (Dg.isDraw(n)) {
+        return n;
+      } else {
+        return null;
+      }
     }
   };
 
@@ -92,8 +110,9 @@
     };
 
     Node.prototype.render = function() {
-      var wrap;
+      var self, wrap;
 
+      self = this;
       wrap = this.wrap;
       if (!this.prop.height) {
         if (this.parent) {
@@ -122,13 +141,16 @@
         return $(this).css("cursor", "");
       });
       wrap.click(function() {
-        var hostKeyWidget;
+        var d;
 
-        $(this).css("border", "red solid thin");
-        if (hostKeyWidget) {
-          hostKeyWidget.css("border", "");
+        d = Dg.findDraw(self);
+        if (d) {
+          if (d.selectedWidget && d.selectedWidget.wrap) {
+            d.selectedWidget.wrap.css("border", "blue dashed thin");
+          }
+          d.selectedWidget = self;
+          $(this).css("border", "blue solid thin");
         }
-        hostKeyWidget = $(this);
         return false;
       });
       wrap.dblclick(function() {
@@ -164,7 +186,8 @@
     __extends(Draw, _super);
 
     function Draw(id, height, width) {
-      var bc, ct, dg, pl, root;
+      var bc, ct, dg, pl, root,
+        _this = this;
 
       Draw.__super__.constructor.call(this, 0, 0, height, width);
       if (!id) {
@@ -202,11 +225,63 @@
         position: 'relative',
         'height': '2000px'
       });
+      this.prop.width = Number(pl.css("width").replace("px", ""));
+      this.prop.height = Number(pl.css("height").replace("px", ""));
       bc = $('<div id="breadcrumb"></div>');
       root.append(bc);
       bc.css(ct);
+      $(document).keydown(function(e) {
+        return _this.keypress(e);
+      });
       this.render = function() {};
     }
+
+    Draw.prototype.keypress = function(e) {
+      var ht, k, l, pht, pwd, t, w, wd;
+
+      if (this.selectedWidget) {
+        if (e.which) {
+          k = e.keyCode;
+        } else if (e.which !== 0 && e.charCode !== 0) {
+          k = e.which;
+        } else {
+
+        }
+        if (k >= 37 && k <= 40) {
+          w = this.selectedWidget.wrap;
+          switch (k) {
+            case 37:
+              l = Number(w.css("left").replace("px", ""));
+              if (l > 0) {
+                w.css("left", l - 1 + "px");
+              }
+              break;
+            case 38:
+              t = Number(w.css("top").replace("px", ""));
+              if (t > 0) {
+                w.css("top", t - 1 + "px");
+              }
+              break;
+            case 39:
+              l = Number(w.css("left").replace("px", ""));
+              wd = this.selectedWidget.prop.width;
+              pwd = this.selectedWidget.parent.prop.width;
+              if (pwd > wd + l + 2) {
+                w.css("left", l + 1 + "px");
+              }
+              break;
+            case 40:
+              t = Number(w.css("top").replace("px", ""));
+              ht = this.selectedWidget.prop.height;
+              pht = this.selectedWidget.parent.prop.height;
+              if (pht > ht + t + 2) {
+                w.css("top", t + 1 + "px");
+              }
+          }
+          return false;
+        }
+      }
+    };
 
     return Draw;
 
