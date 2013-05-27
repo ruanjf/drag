@@ -10,113 +10,126 @@
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  Dg = {
-    VERSION: "0.1"
-  };
+  Dg = (function() {
+    /**
+    	# 设定当前版本
+    	# 
+    	# @property VERSION
+    	# @type String
+    	# @static
+    	# @final
+    */
+    function Dg() {}
+
+    Dg.VERSION = "0.1";
+
+    /**
+    	# 判断实例是否为节点
+    	# 
+    	# @static
+    	# @method isNode
+    	# @param n {Obejct} 指定节点
+    	# @return {Boolean} 如果是返回true
+    */
+
+
+    Dg.isNode = function(n) {
+      return n instanceof Dg.Node;
+    };
+
+    /**
+    	# 判断实例是否为布局面板
+    	# 
+    	# @static
+    	# @method isDraw
+    	# @param n {Obejct} 指定节点
+    	# @return {Boolean} 如果是返回true
+    */
+
+
+    Dg.isDraw = function(n) {
+      return n instanceof Dg.Draw;
+    };
+
+    /**
+    	# 迭代给定的节点列表，并回调执行方法
+    	# 
+    	# @static
+    	# @method listNodes
+    	# @param n {Obejct} 指定节点或者节点列表
+    	# @param fuc {Function} 需执行的方法
+    */
+
+
+    Dg.listNodes = function(c, fuc) {
+      var doFuc;
+
+      doFuc = function(n) {
+        if (Dg.isNode(n)) {
+          return fuc(n);
+        }
+      };
+      if (_.isArray(c)) {
+        return _.each(c, doFuc);
+      } else {
+        return doFuc(c);
+      }
+    };
+
+    /**
+    	# 查找节点的布局面板节点
+    	# 
+    	# @static
+    	# @method findDraw
+    	# @param n {Obejct} 指定节点
+    	# @return {Obejct} 找到返回布局面板节点否则返回null
+    */
+
+
+    Dg.findDraw = function(n) {
+      if (n.parent) {
+        if (Dg.isNode(n.parent)) {
+          return Dg.findDraw(n.parent);
+        }
+      } else {
+        if (Dg.isDraw(n)) {
+          return n;
+        } else {
+          return null;
+        }
+      }
+    };
+
+    /**
+    	# 添加子节点到当前节点中
+    	# 
+    	# @static
+    	# @method getKeyCode
+    	# @param e {Events} 事件对象
+    	# @return {Integer} 当前按键对于键码值
+    */
+
+
+    Dg.getKeyCode = function(e) {
+      var k;
+
+      if (e.which) {
+        k = e.keyCode;
+      } else if (e.which !== 0 && e.charCode !== 0) {
+        k = e.which;
+      } else {
+
+      }
+      return k;
+    };
+
+    return Dg;
+
+  })();
 
   if (window) {
     window.Dg = Dg;
   }
-
-  /**
-  # 判断实例是否为节点
-  # 
-  # @static
-  # @method isNode
-  # @param n {Obejct} 指定节点
-  # @return {Boolean} 如果是返回true
-  */
-
-
-  Dg.isNode = function(n) {
-    return n instanceof Dg.Node;
-  };
-
-  /**
-  # 判断实例是否为布局面板
-  # 
-  # @static
-  # @method isDraw
-  # @param n {Obejct} 指定节点
-  # @return {Boolean} 如果是返回true
-  */
-
-
-  Dg.isDraw = function(n) {
-    return n instanceof Dg.Draw;
-  };
-
-  /**
-  # 迭代给定的节点列表，并回调执行方法
-  # 
-  # @static
-  # @method listNodes
-  # @param n {Obejct} 指定节点或者节点列表
-  # @param fuc {Function} 需执行的方法
-  */
-
-
-  Dg.listNodes = function(c, fuc) {
-    var doFuc;
-
-    doFuc = function(n) {
-      if (Dg.isNode(n)) {
-        return fuc(n);
-      }
-    };
-    if (_.isArray(c)) {
-      return _.each(c, doFuc);
-    } else {
-      return doFuc(c);
-    }
-  };
-
-  /**
-  # 查找节点的布局面板节点
-  # 
-  # @static
-  # @method findDraw
-  # @param n {Obejct} 指定节点
-  # @return {Obejct} 找到返回布局面板节点否则返回null
-  */
-
-
-  Dg.findDraw = function(n) {
-    if (n.parent) {
-      if (Dg.isNode(n.parent)) {
-        return Dg.findDraw(n.parent);
-      }
-    } else {
-      if (Dg.isDraw(n)) {
-        return n;
-      } else {
-        return null;
-      }
-    }
-  };
-
-  /**
-  # 添加子节点到当前节点中
-  # 
-  # @static
-  # @method getKeyCode
-  # @param e {Events} 事件对象
-  # @return {Integer} 当前按键对于键码值
-  */
-
-
-  Dg.getKeyCode = function(e) {
-    var k;
-
-    if (e.which) {
-      k = e.keyCode;
-    } else if (e.which !== 0 && e.charCode !== 0) {
-      k = e.which;
-    } else {
-
-    }
-    return k;
-  };
 
   /**
   # 基础节点，提供通用方法支持
