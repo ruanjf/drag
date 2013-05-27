@@ -6,6 +6,7 @@ var webPaths = {
 		"jquery.ui.draggable": "jquery/ui/jquery.ui.draggable",
 		"jquery.ui.droppable": "jquery/ui/jquery.ui.droppable",
 		"jquery.ui.resizable": "jquery/ui/jquery.ui.resizable",
+		"jquery.ui.selectable": "jquery/ui/jquery.ui.selectable",
 		"underscore": "underscore/underscore",
         "bootstrap": "bootstrap/js/bootstrap",
         "holder": "holder/holder",
@@ -20,11 +21,12 @@ var localPaths = {
 	"jquery.ui.draggable": "jquery/ui/jquery.ui.draggable",
 	"jquery.ui.droppable": "jquery/ui/jquery.ui.droppable",
 	"jquery.ui.resizable": "jquery/ui/jquery.ui.resizable",
+	"jquery.ui.selectable": "jquery/ui/jquery.ui.selectable",
 	"underscore": "underscore/underscore",
     "bootstrap": "bootstrap/js/bootstrap",
     "holder": "holder/holder",
     "backbone": "backbone/backbone",
-    "drag": "drag/drag"
+    "drag": "drag/drag-0.1"
 };
 require.config({
 
@@ -50,6 +52,7 @@ require.config({
         "jquery.ui.draggable": ["jquery", "jquery.ui.widget"],
         "jquery.ui.droppable": ["jquery", "jquery.ui.widget"],
         "jquery.ui.resizable": ["jquery", "jquery.ui.widget"],
+        "jquery.ui.selectable": ["jquery", "jquery.ui.widget"],
         "drag": [
 			"jquery",
 			"jquery.ui.core",
@@ -57,7 +60,8 @@ require.config({
 			"jquery.ui.mouse",
 			"jquery.ui.draggable",
 			"jquery.ui.droppable",
-			"jquery.ui.resizable"
+			"jquery.ui.resizable",
+			"jquery.ui.selectable"
 		]
     }
 
@@ -83,10 +87,12 @@ require(
 			wrap.append("<div>bbbbbb</div>");
 		};
 		a.addChildren(b);
+		a.addChildren(new Dg.Node(130, 20, 100, 100));
+		a.addChildren(new Dg.Node(250, 20, 100, 100));
 		dw.addChildren(a);
 
-		var d = new Dg.Node(230, 0, 200, 200);
-		var e = new Dg.Node(20, 20, 100, 100);
+		var d = new Dg.Node(430, 0, 200, 200);
+		var e = new Dg.Node(20, 20, 60, 60);
 		e.renderContent = function(wrap) {
 			wrap.append("<div>eeeeeee</div>");
 		};

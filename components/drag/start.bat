@@ -1,1 +1,0 @@
-coffee --watch --compile drag.coffee

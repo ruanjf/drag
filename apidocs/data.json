@@ -1,0 +1,390 @@
+{
+    "project": {
+        "name": "Drag API",
+        "description": "拖拽框架api说明文档",
+        "version": "0.1",
+        "url": "http://www.runjf.com/drag"
+    },
+    "files": {
+        "drag.coffee": {
+            "name": "drag.coffee",
+            "modules": {},
+            "classes": {
+                "Dg": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "drag.node.coffee": {
+            "name": "drag.node.coffee",
+            "modules": {},
+            "classes": {
+                "Dg.Node": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "drag.node.draw.coffee": {
+            "name": "drag.node.draw.coffee",
+            "modules": {},
+            "classes": {
+                "Dg.Draw": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "Dg": {
+            "name": "Dg",
+            "shortname": "Dg",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "drag.coffee",
+            "line": 2,
+            "description": "Drag框架的基础对象"
+        },
+        "Dg.Node": {
+            "name": "Dg.Node",
+            "shortname": "Dg.Node",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "drag.node.coffee",
+            "line": 6,
+            "description": "基础节点，提供通用方法支持",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "left",
+                    "description": "相对于父节点左边位置的像素",
+                    "type": "Integer"
+                },
+                {
+                    "name": "top",
+                    "description": "相对于父节点上边位置的像素",
+                    "type": "Integer"
+                },
+                {
+                    "name": "height",
+                    "description": "节点的高度",
+                    "type": "Integer"
+                },
+                {
+                    "name": "width",
+                    "description": "节点的宽度",
+                    "type": "Integer"
+                }
+            ]
+        },
+        "Dg.Draw": {
+            "name": "Dg.Draw",
+            "shortname": "Dg.Draw",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "drag.node.draw.coffee",
+            "line": 7,
+            "description": "布局面板，用于生成界面的显示效果",
+            "extends": "Dg.Node",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "id",
+                    "description": "布局面板需要依托的html节点",
+                    "type": "String"
+                },
+                {
+                    "name": "height",
+                    "description": "节点的高度",
+                    "type": "Integer"
+                },
+                {
+                    "name": "width",
+                    "description": "节点的宽度",
+                    "type": "Integer"
+                }
+            ]
+        }
+    },
+    "classitems": [
+        {
+            "file": "drag.coffee",
+            "line": 13,
+            "description": "判断实例是否为节点",
+            "static": 1,
+            "itemtype": "method",
+            "name": "isNode",
+            "params": [
+                {
+                    "name": "n",
+                    "description": "指定节点",
+                    "type": "Obejct"
+                }
+            ],
+            "return": {
+                "description": "如果是返回true",
+                "type": "Boolean"
+            },
+            "class": "Dg"
+        },
+        {
+            "file": "drag.coffee",
+            "line": 24,
+            "description": "判断实例是否为布局面板",
+            "static": 1,
+            "itemtype": "method",
+            "name": "isDraw",
+            "params": [
+                {
+                    "name": "n",
+                    "description": "指定节点",
+                    "type": "Obejct"
+                }
+            ],
+            "return": {
+                "description": "如果是返回true",
+                "type": "Boolean"
+            },
+            "class": "Dg"
+        },
+        {
+            "file": "drag.coffee",
+            "line": 34,
+            "description": "迭代给定的节点列表，并回调执行方法",
+            "static": 1,
+            "itemtype": "method",
+            "name": "listNodes",
+            "params": [
+                {
+                    "name": "n",
+                    "description": "指定节点或者节点列表",
+                    "type": "Obejct"
+                },
+                {
+                    "name": "fuc",
+                    "description": "需执行的方法",
+                    "type": "Function"
+                }
+            ],
+            "class": "Dg"
+        },
+        {
+            "file": "drag.coffee",
+            "line": 50,
+            "description": "查找节点的布局面板节点",
+            "static": 1,
+            "itemtype": "method",
+            "name": "findDraw",
+            "params": [
+                {
+                    "name": "n",
+                    "description": "指定节点",
+                    "type": "Obejct"
+                }
+            ],
+            "return": {
+                "description": "找到返回布局面板节点否则返回null",
+                "type": "Obejct"
+            },
+            "class": "Dg"
+        },
+        {
+            "file": "drag.coffee",
+            "line": 84,
+            "description": "添加子节点到当前节点中",
+            "static": 1,
+            "itemtype": "method",
+            "name": "getKeyCode",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "事件对象",
+                    "type": "Events"
+                }
+            ],
+            "return": {
+                "description": "当前按键对于键码值",
+                "type": "Integer"
+            },
+            "class": "Dg"
+        },
+        {
+            "file": "drag.node.coffee",
+            "line": 30,
+            "description": "获取包裹该节点的jquery对象",
+            "static": 1,
+            "itemtype": "method",
+            "name": "getWrap",
+            "params": [
+                {
+                    "name": "prop",
+                    "description": "相对于父节点左边位置的像素",
+                    "type": "Integer"
+                },
+                {
+                    "name": "nodeId",
+                    "description": "相对于父节点上边位置的像素",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "返回该节点对应的jquery对象",
+                "type": "Object"
+            },
+            "class": "Dg.Node"
+        },
+        {
+            "file": "drag.node.coffee",
+            "line": 51,
+            "description": "获取该节点的唯一标识",
+            "static": 1,
+            "itemtype": "method",
+            "name": "getNodeId",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "指定标识的前缀",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "返回该节点的唯一标识",
+                "type": "String"
+            },
+            "class": "Dg.Node"
+        },
+        {
+            "file": "drag.node.coffee",
+            "line": 61,
+            "description": "获取该节点的子节点，只返回直接子节点",
+            "itemtype": "method",
+            "name": "getChildren",
+            "return": {
+                "description": "以数组的形式返回子节点",
+                "type": "Array"
+            },
+            "class": "Dg.Node"
+        },
+        {
+            "file": "drag.node.coffee",
+            "line": 69,
+            "description": "添加子节点到当前节点中",
+            "itemtype": "method",
+            "name": "addChildren",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "nodes",
+                    "description": "子节点，支持一个或者多个",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "当前节点",
+                "type": "Object"
+            },
+            "class": "Dg.Node"
+        },
+        {
+            "file": "drag.node.coffee",
+            "line": 86,
+            "description": "添加子节点到当前节点中",
+            "itemtype": "method",
+            "name": "removeChildren",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "nodes",
+                    "description": "子节点，支持一个或者多个",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "当前节点",
+                "type": "Object"
+            },
+            "class": "Dg.Node"
+        },
+        {
+            "file": "drag.node.coffee",
+            "line": 102,
+            "description": "绘制当前节点显示界面",
+            "itemtype": "method",
+            "name": "render",
+            "chainable": 1,
+            "return": {
+                "description": "当前节点",
+                "type": "Object"
+            },
+            "class": "Dg.Node"
+        },
+        {
+            "file": "drag.node.coffee",
+            "line": 151,
+            "description": "绘制子节点显示界面",
+            "itemtype": "method",
+            "name": "render",
+            "chainable": 1,
+            "return": {
+                "description": "当前节点",
+                "type": "Object"
+            },
+            "class": "Dg.Node"
+        },
+        {
+            "file": "drag.node.coffee",
+            "line": 167,
+            "description": "绘制子节点显示界面",
+            "itemtype": "method",
+            "name": "render",
+            "params": [
+                {
+                    "name": "wrap",
+                    "description": "子节点，支持一个或者多个",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "当前节点",
+                "type": "Object"
+            },
+            "class": "Dg.Node"
+        },
+        {
+            "file": "drag.node.draw.coffee",
+            "line": 66,
+            "description": "使用方向键移动节点",
+            "itemtype": "method",
+            "name": "moveNode",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "n",
+                    "description": "需移动的节点",
+                    "type": "Object"
+                },
+                {
+                    "name": "k",
+                    "description": "当前按键对于键码值",
+                    "type": "Object"
+                },
+                {
+                    "name": "s",
+                    "description": "移动的步长",
+                    "type": "Object"
+                }
+            ],
+            "class": "Dg.Draw"
+        }
+    ],
+    "warnings": []
+}
