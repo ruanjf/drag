@@ -1,65 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta http-equiv="pragma" content="no-cache"> 
-	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
-	<meta http-equiv="expires" content="0">
-	<title>Drag</title>
-
-	<!-- <script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/easeljs-0.6.0.min.js"></script>
-	<script type="text/javascript" src="js/drag.js"></script> -->
-	<!-- // <script type="text/javascript" src="js/drag.js"></script> -->
-	<script data-main="components/main" src="components/requirejs/require.js"></script>
-
-	<link href="css/bootstrap.css" rel="stylesheet" media="screen">
-	<!-- <link rel="stylesheet" type="text/css" href="css/base.css"> -->
-
-	<!-- We also provide hosted minified versions of all CreateJS libraries.
-	  http://code.createjs.com -->
-
-</head>
-	
-<body>
-	<div class="container-fluid">
-		 <!-- Only required for left/right tabs -->
-		<!-- <div class="tabbable" cl>
-			<ul class="nav nav-tabs">
-				<li class="active"><a href="#tab1" data-toggle="tab">Section 1</a></li>
-				<li><a href="#tab2" data-toggle="tab">Section 2</a></li>
-			</ul>
-			<div class="tab-content">
-				<div class="tab-pane active" id="tab1">
-					<ul class="thumbnails">
-						<li>
-							<a href="#" class="thumbnail"><img data-src="holder.js/80x80" alt=""></a>
-						</li>
-					</ul>
-				</div>
-				<div class="tab-pane" id="tab2">
-				  <p>Howdy, I'm in Section 2.</p>
-				</div>
-			</div>
-		</div> -->
-		<div id="ct">
-			<div id="drag">
-				<div id="panel"></div>
-			</div>
-			<div id="breadcrumb">
-				<ul class="breadcrumb">
-				    <li><a href="#">Home</a> <span class="icon-chevron-right"></span></li>
-				    <li><a href="#">Library</a> <span class="icon-chevron-right"></span></li>
-				    <li class="active">Data</li>
-				</ul>
-		    </div>
-		</div>
-	</div>
-	<!-- <script>
-	<div class="canvasHolder">
-		<canvas id="testCanvas" width="960" height="600"></canvas>
-	</div>
-		//new Drag( document.getElementById("testCanvas") );
-	</script> -->
-</body>
+  <head>
+    <!-- 1. Load Polymer -->
+    <script src="bower_components/polymer/polymer.min.js"></script>
+    <!-- 2. Load a component -->
+    <link rel="import" href="../src/j-drag.html">
+    <link rel="stylesheet" href="css/index.css">
+  </head>
+  <body>
+    <!-- 3. Declare the component by its tag. -->
+    <j-drag class="dragContainer" dragable="false">
+      <j-drag style="top: 10px; left: 10px;">Drag me!</j-drag>
+      <j-drag style="top: 10px; left: 20px;"></j-drag>
+      <j-drag class="d1">
+        <j-drag class="d11"></j-drag>
+      </j-drag>
+    </j-drag>
+  </body>
 </html>

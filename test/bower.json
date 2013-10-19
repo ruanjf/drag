@@ -1,0 +1,25 @@
+{
+  "name": "drag",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ruanjf/drag",
+  "authors": [
+    "ruanjiefeng@gmail.com"
+  ],
+  "description": "drag in web",
+  "keywords": [
+    "drag"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "underscore": "~1.5.2",
+    "polymer": "~0.0.20131010"
+  }
+}

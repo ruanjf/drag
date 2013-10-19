@@ -1,0 +1,82 @@
+<polymer-element name="j-drag" attributes="dragable"
+    on-click="onClick"
+    touch-action="pan-x pan-y"
+    on-trackstart="trackStart"
+    on-track="track"
+    on-trackend="trackEnd">
+  <template>
+    <style>
+      @host {
+        * {
+            display: block;
+            /*width: 200px;
+            height: 200px;
+            background: white;
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            -o-transform-origin: 0 0;
+            -moz-transform-origin: 0 0;
+            
+            -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.8);
+            -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.8);*/
+        }
+      }
+      /*#dragable {
+        top: 10px;
+        left: 10px;
+        width: 200px;
+        height: 200px;
+        background: white;
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        -o-transform-origin: 0 0;
+        -moz-transform-origin: 0 0;
+        
+        -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.8);
+        box-shadow: 0 3px 7px rgba(0, 0, 0, 0.8);
+        -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.8);
+      }*/
+    </style>
+    <content></content>
+  </template>
+  <script>Polymer('j-drag', {
+    dragable: true,
+    trackStart: function(event) {
+      // console.log("trackStart");
+      // console.log(this.$.dragable.style);
+      if (this.dragable) {
+        debugger;
+        this.x = event.pageX - event.target.style.left.replace("px", "");
+        this.y = event.pageY - event.target.style.top.replace("px", "");
+        // this.x = 0;
+        // this.y = 0;
+        console.log(this.x);
+        event.stopPropagation();
+      }
+    },
+    track: function(event) {
+      // console.log("track x:" + event.pageX + "y:" + event.pageY);
+      if (this.dragable) {
+        event.target.style.left = (event.pageX - this.x) + "px";
+        event.target.style.top = (event.pageY - this.y) + "px";
+        event.stopPropagation();
+      }
+    },
+    trackEnd: function(event) {
+      if (this.dragable) {
+        // console.log("trackEnd");
+        this.x = 0;
+        this.y = 0;
+        event.stopPropagation();
+      }
+    },
+    // TODO(sorvell): prevent text selection (file shadowDOM bug!)
+    mousedown: function(e) {
+      e.preventDefault();
+    },
+    onClick: function() {
+      // alert(1);
+    }
+  });</script>
+</polymer-element>

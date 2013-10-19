@@ -1,9 +1,0 @@
-{
-    "name": "Drag API",
-    "description": "拖拽框架api说明文档",
-    "version": "0.1",
-    "url": "http://www.runjf.com/drag",
-    "options": {
-        "outdir": "../apidocs"
-    }
-}
