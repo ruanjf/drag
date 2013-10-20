@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script data-main="js/main" src="bower_components/requirejs/require.js"></script>
     <!-- 1. Load Polymer -->
-    <script src="bower_components/polymer/polymer.min.js"></script>
+    <!-- // <script src="bower_components/polymer/polymer.min.js"></script> -->
     <!-- 2. Load a component -->
-    <link rel="import" href="../src/j-drag.html">
+    <!-- <link rel="import" href="../src/j-drag.html"> -->
     <link rel="stylesheet" href="css/index.css">
   </head>
   <body>
     <!-- 3. Declare the component by its tag. -->
-    <j-drag style="top: 10px; left: 10px;">
+    <!-- <j-drag style="top: 10px; left: 10px;">
       <div class="dragme">Drag me!</div>
     </j-drag>
     <j-drag style="top: 10px; left: 220px;"></j-drag>
     <j-drag class="d1" style="top: 10px; left: 430px;">
       <j-drag class="d11"></j-drag>
-    </j-drag>
+    </j-drag> -->
+
+    <div class="j-drag" style="top: 10px; left: 10px;">
+      <div class="dragme">Drag me!</div>
+    </div>
+    <div class="j-drag" style="top: 10px; left: 220px;"></div>
+    <div class="j-drag d1" style="top: 10px; left: 430px;">
+      <div class="j-drag d11"></div>
+    </div>
+
   </body>
 </html>

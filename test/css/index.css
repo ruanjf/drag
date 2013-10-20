@@ -12,12 +12,12 @@ body {
 
 }
 
-j-drag {
+j-drag, .j-drag {
   position: absolute;
   width: 200px;
   height: 200px;
   background: white;
-  
+
   z-index: 1;
   box-sizing: border-box;
 

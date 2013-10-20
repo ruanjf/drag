@@ -10,7 +10,6 @@
     "drag"
   ],
   "license": "MIT",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
@@ -19,7 +18,8 @@
     "tests"
   ],
   "dependencies": {
-    "underscore": "~1.5.2",
-    "polymer": "~0.0.20131010"
+    "draggabilly": "~1.0.6",
+    "jquery": "~2.0.3",
+    "backbone": "~1.1.0"
   }
 }
