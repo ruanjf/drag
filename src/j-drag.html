@@ -9,6 +9,7 @@
       @host {
         * {
             display: block;
+            cursor: move;
             /*width: 200px;
             height: 200px;
             background: white;
@@ -40,34 +41,53 @@
     </style>
     <content></content>
   </template>
+  <script src="../test/bower_components/jquery/jquery.min.js"></script>
   <script>Polymer('j-drag', {
     dragable: true,
     trackStart: function(event) {
       // console.log("trackStart");
       // console.log(this.$.dragable.style);
       if (this.dragable) {
-        debugger;
-        this.x = event.pageX - event.target.style.left.replace("px", "");
-        this.y = event.pageY - event.target.style.top.replace("px", "");
-        // this.x = 0;
-        // this.y = 0;
-        console.log(this.x);
+        // debugger;
+        this.x = event.pageX - parseInt($(event.target).css("left"));
+        this.y = event.pageY - parseInt($(event.target).css("top"));
+        // console.log($(event.target).css("width"));
+
+        // $(event.target).css("cursor", "move");
+
         event.stopPropagation();
       }
     },
     track: function(event) {
       // console.log("track x:" + event.pageX + "y:" + event.pageY);
       if (this.dragable) {
-        event.target.style.left = (event.pageX - this.x) + "px";
-        event.target.style.top = (event.pageY - this.y) + "px";
+        var x = event.pageX - this.x;
+        var y = event.pageY - this.y;
+        if (event.target.parentElement.tagName == "J-DRAG") {
+          if (x < 0) { x = 0; }
+          if (y < 0) { y = 0; }
+
+          var pw = parseInt($(event.target.parentElement).css("width"));
+          var ph = parseInt($(event.target.parentElement).css("height"));
+          var w = parseInt($(event.target).css("width"));
+          var h = parseInt($(event.target).css("height"));
+          if (x+w > pw) { x = pw - w; }
+          if (y+h > ph) { y = ph - h; }
+        }
+
+        event.target.style.left = x + "px";
+        event.target.style.top = y + "px";
+        
         event.stopPropagation();
       }
     },
     trackEnd: function(event) {
       if (this.dragable) {
-        // console.log("trackEnd");
         this.x = 0;
         this.y = 0;
+
+        // $(event.target).css("cursor", "");
+
         event.stopPropagation();
       }
     },
