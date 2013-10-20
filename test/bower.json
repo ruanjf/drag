@@ -20,6 +20,7 @@
   ],
   "dependencies": {
     "underscore": "~1.5.2",
-    "polymer": "~0.0.20131010"
+    "polymer": "~0.0.20131010",
+    "jquery": "~2.0.3"
   }
 }
