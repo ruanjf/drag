@@ -1,6 +1,5 @@
-<polymer-element name="j-drag" attributes="dragable"
-    on-click="onClick"
-    touch-action="pan-x pan-y"
+<polymer-element name="j-drag" attributes="dragable rootContainer"
+    on-click="select1"
     on-trackstart="trackStart"
     on-track="track"
     on-trackend="trackEnd">
@@ -10,6 +9,7 @@
         * {
             display: block;
             cursor: move;
+            position: absolute;
             /*width: 200px;
             height: 200px;
             background: white;
@@ -42,8 +42,11 @@
     <content></content>
   </template>
   <script src="../test/bower_components/jquery/jquery.min.js"></script>
+  <script src="../test/bower_components/underscore/underscore.js"></script>
   <script>Polymer('j-drag', {
     dragable: true,
+    rootContainer: false,
+    selected: [],
     trackStart: function(event) {
       // console.log("trackStart");
       // console.log(this.$.dragable.style);
@@ -63,6 +66,7 @@
       if (this.dragable) {
         var x = event.pageX - this.x;
         var y = event.pageY - this.y;
+          // debugger;
         if (event.target.parentElement.tagName == "J-DRAG") {
           if (x < 0) { x = 0; }
           if (y < 0) { y = 0; }
@@ -71,8 +75,8 @@
           var ph = parseInt($(event.target.parentElement).css("height"));
           var w = parseInt($(event.target).css("width"));
           var h = parseInt($(event.target).css("height"));
-          if (x+w > pw) { x = pw - w; }
-          if (y+h > ph) { y = ph - h; }
+          if (x > pw-w) { x = pw - w; }
+          if (y > ph-h) { y = ph - h; }
         }
 
         event.target.style.left = x + "px";
@@ -95,8 +99,25 @@
     mousedown: function(e) {
       e.preventDefault();
     },
-    onClick: function() {
-      // alert(1);
+
+    select: function(event) {
+      if (!this.rootContainer) {
+        var selected = event.target;
+        if (this.selected) {
+          $(this.selected).css("border", "");
+        }
+        this.selected.push(selected);
+        $(selected).css("border", "1px solid blue");
+      }
+    },
+
+    enteredViewCallback: function() {
+      if (this.rootContainer) {
+        this.style.position = "fixed";
+        this.style.cursor = "default";
+      } else {
+        this.style.position= "absolute";
+      }
     }
   });</script>
 </polymer-element>

@@ -5,16 +5,20 @@
     <script src="bower_components/polymer/polymer.min.js"></script>
     <!-- 2. Load a component -->
     <link rel="import" href="../src/j-drag.html">
+    <link rel="stylesheet" type="text/css" href="css/topcoat-desktop-dark.css">
     <link rel="stylesheet" href="css/index.css">
   </head>
   <body>
+    <div class="tools">Tools</div>
     <!-- 3. Declare the component by its tag. -->
-    <j-drag style="top: 10px; left: 10px;">
-      <div class="dragme">Drag me!</div>
-    </j-drag>
-    <j-drag style="top: 10px; left: 220px;"></j-drag>
-    <j-drag class="d1" style="top: 10px; left: 430px;">
-      <j-drag class="d11"></j-drag>
+    <j-drag class="dragContainer" rootContainer="true">
+      <j-drag style="top: 10px; left: 10px;">
+        <div class="dragme">Drag me!</div>
+      </j-drag>
+      <j-drag style="top: 10px; left: 220px;"></j-drag>
+      <j-drag class="d1" style="top: 10px; left: 430px;">
+        <j-drag class="d11"></j-drag>
+      </j-drag>
     </j-drag>
   </body>
 </html>
