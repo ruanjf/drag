@@ -1,24 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- 1. Load Polymer -->
-    <script src="bower_components/polymer/polymer.min.js"></script>
-    <!-- 2. Load a component -->
-    <link rel="import" href="../src/j-drag.html">
+    <!-- backbone -->
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/backbone/backbone.js"></script>
+
+    <!-- adjust -->
+    <script src="../src/adjust.js"></script>
+    <script>
+      $(function(){
+        var adjust = new Adjust('.dragContainer');
+        adjust.draggable('.araggable');
+      });
+    </script>
+
     <link rel="stylesheet" type="text/css" href="css/topcoat-desktop-dark.css">
     <link rel="stylesheet" href="css/index.css">
   </head>
   <body>
     <div class="tools">Tools</div>
     <!-- 3. Declare the component by its tag. -->
-    <j-drag class="dragContainer" rootContainer="true">
-      <j-drag style="top: 10px; left: 10px;">
+    <div class="dragContainer" rootContainer="true">
+      <div class="araggable 11" style="top: 10px; left: 10px;">
         <div class="dragme">Drag me!</div>
-      </j-drag>
-      <j-drag style="top: 10px; left: 220px;"></j-drag>
-      <j-drag class="d1" style="top: 10px; left: 430px;">
-        <j-drag class="d11"></j-drag>
-      </j-drag>
-    </j-drag>
+      </div>
+      <div class="araggable 22" style="top: 10px; left: 220px;"></div>
+      <div class="araggable d1" style="top: 10px; left: 430px;">
+        <div class="araggable d11"></div>
+      </div>
+    </div>
   </body>
 </html>

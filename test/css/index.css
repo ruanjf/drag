@@ -1,20 +1,20 @@
 body {
-  margin:0;
-  padding: 0;
+  /*margin:0;*/
+  /*padding: 0;*/
   background: #BEBEBE;
 }
 
 .dragContainer {
-  /*position: fixed;*/
+  position: fixed;
   width: 100%;
   height: 100%;
-  background: #BEBEBE;
+  /*background: #BEBEBE;*/
   margin-top: 7px;
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0.8);
   /*border: 1px solid red;*/
 }
 
-j-drag {
+.araggable, j-drag {
   /*position: absolute;*/
   width: 200px;
   height: 200px;
@@ -53,10 +53,10 @@ j-drag {
 }
 
 .tools {
-
+  margin-top: 1px;
   min-height: 50px;
 
-  background-color: #222;
+  background-color: #303436;
 /*  background-image: -moz-linear-gradient(#222,#111);
   background-image: -webkit-linear-gradient(#222,#111);
   background-image: linear-gradient(#222,#111);*/
